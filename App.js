@@ -1,34 +1,56 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow
- */
-
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View, TouchableOpacity, Linking, Platform} from 'react-native';
 
 export default class App extends Component {
+  dialCall = () => {
+ 
+    let phoneNumber = '';
+ 
+    if (Platform.OS === 'android') {
+      phoneNumber = 'tel:${+989142345131}';
+    }
+    else {
+      phoneNumber = 'telprompt:${+989142345131}';
+    }
+ 
+    Linking.openURL(phoneNumber);
+  };
+ 
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
+      <View style={styles.MainContainer}>
+ 
+        <TouchableOpacity onPress={this.dialCall} activeOpacity={0.7} style={styles.button} >
+ 
+          <Text style={styles.TextStyle}>OPEN PHONE NUMBER IN DIAL SCREEN</Text>
+ 
+        </TouchableOpacity>
+ 
       </View>
+ 
     );
   }
 }
  
 const styles = StyleSheet.create({
-  container: {
+ 
+  MainContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
   },
-  welcome: {
-    fontSize: 20,
+  button: {
+ 
+    width: '80%',
+    padding: 6,
+    backgroundColor: '#FF6F00',
+    borderRadius: 7,
+  },
+ 
+  TextStyle: {
+    color: '#fff',
+    fontSize: 18,
     textAlign: 'center',
-    margin: 10,
   }
+ 
 });
